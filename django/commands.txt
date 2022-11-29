@@ -1,0 +1,12 @@
+INSTALL THIS FIRST!!!
+
+pip install django
+pip install djangorestframework
+pip install djangorestframework-simplejwt
+
+=============
+py manage.py makemigrations
+py manage.py runserver
+py manage.py createsuperuser 
+
+=============
