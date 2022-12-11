@@ -9,5 +9,4 @@ class MembersSerializer(serializers.ModelSerializer):
             'full_name',
             'register_date',
             'is_connected',
-            'device_ip',
         )
