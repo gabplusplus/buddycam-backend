@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'users',
     'rest_framework_simplejwt.token_blacklist',
     'members',
+    'devices',
     # 'django_random_id_model',
 ]
 
