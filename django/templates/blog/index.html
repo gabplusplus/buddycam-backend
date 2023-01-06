@@ -1,15 +1,156 @@
-WELCOME TO BUDDYCAM BACKEND --<br>
-Go to http://127.0.0.1:8000/admin/login/?next=/admin/ to access the admin side and add superuser using "py manage.py createsuperuser"
 
-<br>
-<br>
-ROUTES<br>
-http://127.0.0.1:8000/api/token/<br>
-http://127.0.0.1:8000/api/token/refresh/<br>
-http://127.0.0.1:8000/api/user/create/<br>
-http://127.0.0.1:8000/api/user/logout/blacklist/<br>
-http://127.0.0.1:8000/members/<br>
-http://127.0.0.1:8000/members/int:pk/delete/<br>
-http://127.0.0.1:8000/members/int:pk/update/<br>
-http://127.0.0.1:8000/devices/<br>
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+<html lang="en">
+  
+<head>
+    <title>
+        BUDDYCAM BACKEND ENDPOINT
+    </title>
+    <style>
+        body {
+            margin: 80px;
+            background: #151515;
+            color: #fff;
+            font-family: Consolas, 'Courier New', Courier, monospace;
+        }
 
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto 13%;
+            gap: 5px;
+            background-color: rgb(68, 38, 54);
+            padding: 15px;
+            border-radius: 18px;
+        }
+
+        .grid-container > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid-container > p {
+            margin-left: 20px;
+        }
+        
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 100%;
+            border-radius: 24px;
+            background: rgb(101, 79, 91);
+            padding: 18px;
+        }
+
+        .button {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+        }
+
+        .button:hover {
+            box-shadow: 0 0px 16px 0 rgba(249, 215, 241, 0.966);
+            transition: 0.5s;
+            cursor: pointer;
+        }
+      
+        
+    </style>
+</head>
+  
+<body>
+    <h1>
+        Endpoints
+    </h1>
+
+    <p>
+        WELCOME TO BUDDYCAM BACKEND --<br>
+        Go to <a href="http://127.0.0.1:8000/admin/login/?next=/admin/" target="_blank">http://127.0.0.1:8000/admin/login/?next=/admin/</a> to access the admin side and add superuser using "py manage.py createsuperuser"
+    </p>
+    <br>
+    
+    <div class="card">
+        <div class="grid-container">
+            <p id="token">http://127.0.0.1:8000/api/token/<br></p>
+            <div>
+                <button class="button" onclick="copy('token')">Copy</button>
+            </div>
+
+            <p id="token_ref">http://127.0.0.1:8000/api/token/refresh/<br></p>
+            <div>
+                <button class="button" onclick="copy('token_ref')">Copy</button>
+            </div>
+
+            <p id="usr_cr">http://127.0.0.1:8000/api/user/create/<br></p>
+            <div>
+                <button class="button" onclick="copy('usr_cr')">Copy</button>
+            </div>
+
+            <p id="blklst">http://127.0.0.1:8000/api/user/logout/blacklist/<br></p>
+            <div>
+                <button class="button" onclick="copy('blklst')">Copy</button>
+            </div>
+          </div>
+          
+
+
+          <div class="grid-container" style="margin-top: 10px;">
+            <h3 style="margin-left: 20px;">For "int:pk" state the primary key</h3>
+            <p></p>
+            <p id="mmbr">http://127.0.0.1:8000/members/<br></p>
+            <div>
+                <button class="button" onclick="copy('mmbr')">Copy</button>
+            </div>
+
+            <p id="mmbr_del">http://127.0.0.1:8000/members/int:pk/delete/<br></p>
+            <div>
+                <button class="button" onclick="copy('mmbr_del')">Copy</button>
+            </div>
+
+            <p id="mmbr_up">http://127.0.0.1:8000/members/int:pk/update/<br></p>
+            <div>
+                <button class="button" onclick="copy('mmbr_up')">Copy</button>
+            </div>
+          </div>
+
+
+
+          <div class="grid-container" style="margin-top: 10px;">
+            <h3 style="margin-left: 20px;">For "str:pk" state the primary key</h3>
+            <p></p>
+            <p id="dev">http://127.0.0.1:8000/devices/<br></p>
+            <div>
+                <button class="button" onclick="copy('dev')">Copy</button>
+            </div>
+
+            <p id="dev_d">http://127.0.0.1:8000/devices/str:pk/<br></p>
+            <div>
+                <button class="button" onclick="copy('dev')">Copy</button>
+            </div>
+
+            <p id="dev_up">http://127.0.0.1:8000/devices/str:pk/update/<br></p>
+            <div>
+                <button class="button" onclick="copy('dev_up')">Copy</button>
+            </div>
+            
+            <p id="dev_del">http://127.0.0.1:8000/devices/str:pk/delete/<br></p>
+            <div>
+                <button class="button" onclick="copy('dev_del')">Copy</button>
+            </div>
+            </div>
+          </div>
+    </div>
+
+    <script>
+        function copy(str) {
+          // Get the text field
+          var copyText = document.getElementById(str).innerText;
+                
+          // Copy the text inside the text field
+          navigator.clipboard.writeText(copyText);
+        }
+        </script>
+</body>
+  
+</html>

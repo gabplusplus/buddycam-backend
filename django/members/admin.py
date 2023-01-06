@@ -1,4 +1,6 @@
 from django.contrib import admin
 from . import models
 
-admin.site.register(models.Members)
+@admin.register(models.Members)
+class MembersAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'register_date', 'is_connected')
