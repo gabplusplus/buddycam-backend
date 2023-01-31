@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'members',
     'devices',
     # 'django_random_id_model',
+    'streams',
 ]
 
 MIDDLEWARE = [

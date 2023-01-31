@@ -3,4 +3,4 @@ from . import models
 
 @admin.register(models.Members)
 class MembersAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'register_date', 'is_connected')
+    list_display = ('id','full_name', 'register_date', 'is_connected')

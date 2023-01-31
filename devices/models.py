@@ -1,8 +1,10 @@
 from django.db import models
+import uuid
 from members.models import Members
 
 class Devices(models.Model):
-    device_ip = models.GenericIPAddressField(default='0.0.0.0', primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    device_ip = models.CharField(max_length=255)
     device_full_name = models.ForeignKey(Members, on_delete=models.CASCADE, to_field='full_name', related_name='deviceFullName')
     device_batt = models.CharField(max_length=3, default='0')
     device_signal = models.IntegerField(default=0)
