@@ -19,7 +19,7 @@ def Cam2(request):
 class VideoCamera2(object):
     
     def __init__(self):
-        self.video2 = cv2.VideoCapture("rtsp://192.168.68.110:5540/ch0")
+        self.video2 = cv2.VideoCapture("rtsp://192.168.68.103:5540/ch0")
         (self.grabbed2, self.frame2) = self.video2.read()
         threading.Thread(target=self.update, args=()).start()
 
