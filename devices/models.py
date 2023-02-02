@@ -10,6 +10,7 @@ class Devices(models.Model):
     device_signal = models.IntegerField(default=0)
     lat = models.FloatField(default=0)
     long = models.FloatField(default=0)
+    is_connected = models.BooleanField(default=False)
 
     def __str__(self):
         dfn = str(self.device_full_name)
