@@ -4,7 +4,7 @@ from .models import Devices
 
 class DevicesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Devices
+        model = Devices
         fields = '__all__'
     
     def create(self, validated_data):

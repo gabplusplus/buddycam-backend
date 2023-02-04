@@ -22,6 +22,10 @@ class VideoCamera(object):
     
     def __init__(self, url):
         self.video = cv2.VideoCapture(url)
+        self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        self.video.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        self.video.set(cv2.CAP_PROP_FOURCC, 0x32595559)
+        self.video.set(cv2.CAP_PROP_FPS, 25)
         (self.grabbed, self.frame) = self.video.read()
         threading.Thread(target=self.update, args=()).start()
 
