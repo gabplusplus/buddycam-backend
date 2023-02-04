@@ -1,68 +1,95 @@
 from django.views.decorators import gzip
-from django.http import StreamingHttpResponse
+from django.http import StreamingHttpResponse, HttpResponse
 from django.shortcuts import render
 from rest_framework import response
 from rest_framework import status
 from .camera import VideoCamera, gen
-
-url = []
+import cv2
+from streams_switch.url_manager import cam_list
 
 @gzip.gzip_page
 def Cam1(request):
-    try:
-        cam = VideoCamera("rtsp://192.168.100.5:5540/ch0")
-        return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
-    except:
-        pass
+    print(cam_list.get("cam1")[1])
+    check = cv2.VideoCapture(f'{cam_list.get("cam1")[1]}')
+    if check.isOpened():
+        try:
+            cam = VideoCamera(f'{cam_list.get("cam1")[1]}')
+            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame', status=status.HTTP_200_OK)
+        except:
+            pass
+    else:
+        return HttpResponse(status=status.HTTP_503_SERVICE_UNAVAILABLE)
 
     return render(request)
 
+
 @gzip.gzip_page
 def Cam2(request):
-    try:
-        cam = VideoCamera(0)
-        return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
-    except:
-        pass
+    print(cam_list.get("cam2")[1])
+    check = cv2.VideoCapture(f'{cam_list.get("cam2")[1]}')
+    if check.isOpened():
+        try:
+            cam = VideoCamera(f'{cam_list.get("cam2")[1]}')
+            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
+        except:
+            pass
+    else:
+        return HttpResponse(status=status.HTTP_503_SERVICE_UNAVAILABLE)
 
     return render(request)
 
 @gzip.gzip_page
 def Cam3(request):
-    try:
-        cam = VideoCamera("link")
-        return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
-    except:
-        pass
+    check = cv2.VideoCapture(f'{cam_list.get("cam3")[1]}')
+    if check.isOpened():
+        try:
+            cam = VideoCamera(f'{cam_list.get("cam3")[1]}')
+            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
+        except:
+            pass
+    else:
+        return HttpResponse(status=status.HTTP_503_SERVICE_UNAVAILABLE)
 
     return render(request)
 
 @gzip.gzip_page
 def Cam4(request):
-    try:
-        cam = VideoCamera("link")
-        return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
-    except:
-        pass
+    check = cv2.VideoCapture(f'{cam_list.get("cam4")[1]}')
+    if check.isOpened():
+        try:
+            cam = VideoCamera(f'{cam_list.get("cam4")[1]}')
+            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
+        except:
+            pass
+    else:
+        return HttpResponse(status=status.HTTP_503_SERVICE_UNAVAILABLE)
 
     return render(request)
 
 @gzip.gzip_page
 def Cam5(request):
-    try:
-        cam = VideoCamera("link")
-        return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
-    except:
-        pass
+    check = cv2.VideoCapture(f'{cam_list.get("cam5")[1]}')
+    if check.isOpened():
+        try:
+            cam = VideoCamera(f'{cam_list.get("cam5")[1]}')
+            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
+        except:
+            pass
+    else:
+        return HttpResponse(status=status.HTTP_503_SERVICE_UNAVAILABLE)
 
     return render(request)
 
 @gzip.gzip_page
 def Cam6(request):
-    try:
-        cam = VideoCamera("link")
-        return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
-    except:
-        pass
+    check = cv2.VideoCapture(f'{cam_list.get("cam6")[1]}')
+    if check.isOpened():
+        try:
+            cam = VideoCamera(f'{cam_list.get("cam6")[1]}')
+            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
+        except:
+            pass
+    else:
+        return HttpResponse(status=status.HTTP_503_SERVICE_UNAVAILABLE)
 
     return render(request)
