@@ -19,13 +19,20 @@ class UserLoginView(TokenObtainPairView):
         response = super().post(request, *args, **kwargs)
         if response.status_code == 200:
             user = get_user_model().objects.get(email=request.data['email'])
+            response.data['id'] = user.id
             response.data['user_name'] = user.user_name
             response.data['email'] = user.email
             response.data['first_name'] = user.first_name
             response.data['last_name'] = user.last_name
         return response
 
+class EditUserView(generics.RetrieveUpdateAPIView):
+    queryset = NewUser.objects.all()
+    serializer_class = CustomUserSerializer
 
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+    
 class CustomUserCreateView(generics.CreateAPIView):
     serializer_class = CustomUserSerializer
     queryset = NewUser.objects.all()
