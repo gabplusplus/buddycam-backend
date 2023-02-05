@@ -10,4 +10,5 @@ urlpatterns = [
     path('cam4', views.Cam4, name='cam4'),
     path('cam5', views.Cam5, name='cam5'),
     path('cam6', views.Cam6, name='cam6'),
+    path('list/', views.camlist, name="camlist"),
 ]

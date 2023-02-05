@@ -6,6 +6,9 @@ from devices.models import Devices
 from streams import views
 from .url_manager import destroy
 from rest_framework.serializers import ValidationError
+from rest_framework.response import Response
+from .url_manager import cam_list
+import json
 
 class StreamsList(generics.ListCreateAPIView):
     permission_classes = [permissions.AllowAny]
