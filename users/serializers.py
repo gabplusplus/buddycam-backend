@@ -16,3 +16,25 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['first_name'] = user.first_name
         token['last_name'] = user.last_name
         return token
+
+class EditUserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+    confirm_password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = NewUser
+        fields = ('id', 'email', 'user_name', 'first_name', 'last_name', 'password', 'confirm_password')
+
+    def validate(self, data):
+        if data['password'] != data['confirm_password']:
+            raise serializers.ValidationError("Passwords must match")
+        return data
+
+    def update(self, instance, validated_data):
+        password = validated_data.pop('password', None)
+        confirm_password = validated_data.pop('confirm_password', None)
+        instance = super().update(instance, validated_data)
+        if password:
+            instance.set_password(password)
+            instance.save()
+        return instance

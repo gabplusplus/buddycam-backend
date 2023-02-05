@@ -6,7 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import AllowAny
-from .serializers import CustomUserSerializer
+from .serializers import CustomUserSerializer, EditUserSerializer
 
 from rest_framework import generics
 from .models import NewUser
@@ -28,7 +28,7 @@ class UserLoginView(TokenObtainPairView):
 
 class EditUserView(generics.RetrieveUpdateAPIView):
     queryset = NewUser.objects.all()
-    serializer_class = CustomUserSerializer
+    serializer_class = EditUserSerializer
 
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
