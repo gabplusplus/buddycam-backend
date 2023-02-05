@@ -1,24 +1,34 @@
-from rest_framework_simplejwt.views import TokenObtainPairView
+from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import CustomUserSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import AllowAny
+from .serializers import CustomUserSerializer
 
+from rest_framework import generics
+from .models import NewUser
 
-class CustomUserCreate(APIView):
+class UserLoginView(TokenObtainPairView):
+    serializer_class = TokenObtainPairSerializer
     permission_classes = [AllowAny]
 
-    def post(self, request, format='json'):
-        serializer = CustomUserSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
-            if user:
-                json = serializer.data
-                return Response(json, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        if response.status_code == 200:
+            user = get_user_model().objects.get(email=request.data['email'])
+            response.data['user_name'] = user.user_name
+            response.data['email'] = user.email
+            response.data['first_name'] = user.first_name
+            response.data['last_name'] = user.last_name
+        return response
 
+
+class CustomUserCreateView(generics.CreateAPIView):
+    serializer_class = CustomUserSerializer
+    queryset = NewUser.objects.all()
 
 class BlacklistTokenUpdateView(APIView):
     permission_classes = [AllowAny]
@@ -32,3 +42,4 @@ class BlacklistTokenUpdateView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+        

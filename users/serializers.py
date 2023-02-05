@@ -1,25 +1,18 @@
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
-from users.models import NewUser
+from .models import NewUser
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    """
-    Currently unused in preference of the below.
-    """
-    email = serializers.EmailField(required=True)
-    user_name = serializers.CharField(required=True)
-    password = serializers.CharField(min_length=8, write_only=True)
-
     class Meta:
         model = NewUser
-        fields = ('email', 'user_name', 'password')
-        extra_kwargs = {'password': {'write_only': True}}
-
-    def create(self, validated_data):
-        password = validated_data.pop('password', None)
-        # as long as the fields are the same, we can just use this
-        instance = self.Meta.model(**validated_data)
-        if password is not None:
-            instance.set_password(password)
-        instance.save()
-        return instance
+        fields = ('id', 'email', 'user_name', 'first_name', 'last_name')
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['email'] = user.email
+        token['user_name'] = user.user_name
+        token['first_name'] = user.first_name
+        token['last_name'] = user.last_name
+        return token
