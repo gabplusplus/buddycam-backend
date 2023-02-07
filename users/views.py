@@ -6,7 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import AllowAny
-from .serializers import CustomUserSerializer, EditUserSerializer
+from .serializers import CustomUserSerializer, EditUserSerializer, ResetPasswordSerializer
 
 from rest_framework import generics
 from .models import NewUser
@@ -49,4 +49,14 @@ class BlacklistTokenUpdateView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        
+class ResetPasswordView(generics.UpdateAPIView):
+    serializer_class = ResetPasswordSerializer
+    queryset = NewUser.objects.all()
+    
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        instance.set_password(serializer.validated_data['password'])
+        instance.save()
+        return Response({"message": "Password has been reset successfully."})
