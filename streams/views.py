@@ -7,6 +7,7 @@ from .camera import VideoCamera, gen
 import cv2
 from streams_switch.url_manager import cam_list
 import json
+from devices.models import Devices
 
 
 @gzip.gzip_page
@@ -97,5 +98,6 @@ def Cam6(request):
     return render(request)
 
 def camlist(request):
+    cam_list
     cam = json.dumps(cam_list)
     return HttpResponse(cam, content_type="application/json")

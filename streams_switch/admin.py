@@ -4,4 +4,4 @@ from streams.models import Streams
 
 @admin.register(Streams)
 class StreamsAdmin(admin.ModelAdmin):
-    list_display = ('device_id', 'device_url')
+    list_display = ('device_id', 'status')
