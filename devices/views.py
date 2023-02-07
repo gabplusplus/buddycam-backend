@@ -2,6 +2,7 @@ from rest_framework import generics, permissions
 from .models import Devices
 from rest_framework_simplejwt import authentication
 from .serializers import DevicesSerializer
+from streams_switch.url_manager import destroy
 
 class DeviceList(generics.ListCreateAPIView):
     permission_classes = [permissions.AllowAny]
@@ -33,4 +34,6 @@ class DeviceDestroy(generics.DestroyAPIView):
     lookup_field = 'pk'
 
     def perform_destroy(self, instance):
+        print(str(instance.id))
+        destroy(str(instance.id))
         super().perform_destroy(instance)

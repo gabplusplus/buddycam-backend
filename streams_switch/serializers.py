@@ -16,7 +16,7 @@ class StreamsSerializer(serializers.ModelSerializer):
         model = Streams
         fields = [
             'device_id',
-            'device_url',
+            'status',
             'get_url',
         ]
 
