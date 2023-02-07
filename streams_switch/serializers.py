@@ -18,6 +18,7 @@ class StreamsSerializer(serializers.ModelSerializer):
             'device_id',
             'status',
             'get_url',
+            'get_device_name',
         ]
 
     def create(self, validated_data):
