@@ -1,12 +1,11 @@
 from django.db import models
+from streams.models import Streams
 from devices.models import Devices
 
 class Locations(models.Model):
-    device_id = models.OneToOneField(Devices, on_delete=models.CASCADE, to_field='id', related_name='location_id', primary_key=True)
-    lat = models.FloatField(default=0)
-    long = models.FloatField(default=0)
+    device_id = models.OneToOneField(Streams, on_delete=models.CASCADE, to_field='device_id', related_name='location_id', primary_key=True)
+    lat = models.CharField(max_length=255)
+    long = models.CharField(max_length=255)
 
-    @property
-    def get_device_name(self):
-        name = Devices.objects.filter(id=self.device_id).values_list('device_full_name')
-        return name[0][0]
+    def device_name(self):
+        return self.device_id.get_device_name()

@@ -8,7 +8,7 @@ class LocationsSerializer(serializers.ModelSerializer):
             'device_id',
             'lat',
             'long',
-            'get_device_name',
+            'device_name',
         ]
 
     def create(self, validated_data):
