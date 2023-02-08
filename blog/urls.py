@@ -5,5 +5,5 @@ app_name = 'blog'
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="blog/index.html")),
-    path('locs', TemplateView.as_view(template_name="blog/locs.html")), 
+    path('locs/', TemplateView.as_view(template_name="blog/locs.html")), 
 ]
