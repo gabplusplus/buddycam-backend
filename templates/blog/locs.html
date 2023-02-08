@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+<html lang="en">
+  
+<head>
+    <title>
+        Locations
+    </title>
+    <style>
+        body {
+            margin: 80px;
+            font-family: Consolas, 'Courier New', Courier, monospace;
+        }    
+    </style>
+</head>
+  
+<body>
+    <h1>Locations</h1>
+    <label for="url">URL</label>
+    <input type="text" id="url" title="url">
+    <br><br>
+    <label for="device_id">Device ID</label>
+    <input type="text" id="device_id" title="device_id">
+    <br><br>
+    <h4>Post</h4>
+    <button onclick="postData(document.getElementById('url').value, document.getElementById('device_id').value, '14.211461064072227', '121.16763168559615')">CCC B2</button>
+    <button onclick="postData(document.getElementById('url').value, document.getElementById('device_id').value, '14.212336619810605', '121.16756127173488')">CCC M</button>
+    <button onclick="postData(document.getElementById('url').value, document.getElementById('device_id').value, '14.213468585660406', '121.16683438937012')">Rizal S</button>
+
+    <h4>Update</h4>
+    <button onclick="updateData(document.getElementById('url').value, document.getElementById('device_id').value, '14.211461064072227', '121.16763168559615')">CCC B2</button>
+    <button onclick="updateData(document.getElementById('url').value, document.getElementById('device_id').value, '14.212336619810605', '121.16756127173488')">CCC M</button>
+    <button onclick="updateData(document.getElementById('url').value, document.getElementById('device_id').value, '14.213468585660406', '121.16683438937012')">Rizal S</button>
+
+    <h4>Post Mob</h4>
+    <button onclick="postData2(document.getElementById('url').value, document.getElementById('device_id').value, '14.211461064072227', '121.16763168559615')">CCC B2</button>
+    <button onclick="postData2(document.getElementById('url').value, document.getElementById('device_id').value, '14.212336619810605', '121.16756127173488')">CCC M</button>
+    <button onclick="postData2(document.getElementById('url').value, document.getElementById('device_id').value, '14.213468585660406', '121.16683438937012')">Rizal S</button>
+
+    <h4>Update Mob</h4>
+    <button onclick="updateData2(document.getElementById('url').value, document.getElementById('device_id').value, '14.211461064072227', '121.16763168559615')">CCC B2</button>
+    <button onclick="updateData2(document.getElementById('url').value, document.getElementById('device_id').value, '14.212336619810605', '121.16756127173488')">CCC M</button>
+    <button onclick="updateData2(document.getElementById('url').value, document.getElementById('device_id').value, '14.213468585660406', '121.16683438937012')">Rizal S</button>
+
+    <script>
+        function postData(url, device_id, lat, long) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "http://127.0.0.1:8000/locations/", true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(JSON.stringify({device_id: device_id, lat: lat, long: long}));
+        }
+
+        function updateData(url, device_id, lat, long) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("PUT", "http://127.0.0.1:8000/locations/"+device_id+"/update/", true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(JSON.stringify({device_id: device_id, lat: lat, long: long}));
+        }
+
+        function postData2(url, device_id, lat, long) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "http://"+url+":8000/locations/", true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    console.log("Success: " + xhr.responseText);
+                } else {
+                    console.error("Error: " + xhr.statusText);
+                    alert("Error: " + xhr.statusText);
+                }
+                }
+            };
+          xhr.send(JSON.stringify({device_id: device_id, lat: lat, long: long}));
+        }
+
+        function updateData2(url, device_id, lat, long) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("PUT", "http://"+url+":8000/locations/"+device_id+"/update/", true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    console.log("Success: " + xhr.responseText);
+                } else {
+                    console.error("Error: " + xhr.statusText);
+                    alert("Error: " + xhr.statusText);
+                }
+                }
+            };
+          xhr.send(JSON.stringify({device_id: device_id, lat: lat, long: long}));
+        }
+      </script>
+    
+</body>
+  
+</html>

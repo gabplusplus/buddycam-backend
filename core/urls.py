@@ -17,5 +17,5 @@ urlpatterns = [
     path('devices/', include('devices.urls', namespace='devices')),
     path('streams/', include('streams.urls', namespace='streams')),
     path('switch/', include('streams_switch.urls', namespace='switch')),
-    # path('locations/', include('locations.urls', namespace='locations')),
+    path('locations/', include('locations.urls', namespace='locations')),
 ]

@@ -66,7 +66,8 @@
 
     <p>
         WELCOME TO BUDDYCAM BACKEND --<br>
-        Go to <a href="http://127.0.0.1:8000/admin/login/?next=/admin/" target="_blank">http://127.0.0.1:8000/admin/login/?next=/admin/</a> to access the admin side and add superuser using "py manage.py createsuperuser"
+        Go to <a href="http://127.0.0.1:8000/admin/login/?next=/admin/" target="_blank">http://127.0.0.1:8000/admin/login/?next=/admin/</a> to access the admin side and add superuser using "py manage.py createsuperuser"<br>
+        <br>Go to <a href="locs" target="_blank">Locations</a>
     </p>
     <br>
     
@@ -224,6 +225,32 @@
                     <button class="button" onclick="copy('list')">Copy</button>
                 </div>
             </div>
+
+            <div class="grid-container" style="margin-top: 10px;">
+                <h3 style="margin-left: 20px;">!IMPORTANT To control locations access.</h3>
+                <p></p>
+                <p>Input URL (sample: 127.0.0.1) **Don't add port. Input Device ID manually from FE.<br>
+                    Click a button from Post Mob to Post and Update to Update location</p>
+                <p></p>
+                <p id="locs">http://127.0.0.1:8000/locs/<br></p>
+                <div>
+                    <button class="button" onclick="copy('locs')">Copy</button>
+                </div>
+            </div>
+
+            <div class="grid-container" style="margin-top: 10px;">
+                <h3 style="margin-left: 20px;">Locations Endpoint Post & Update</h3>
+                <p></p>
+                <p id="loc">http://127.0.0.1:8000/locations/<br></p>
+                <div>
+                    <button class="button" onclick="copy('loc')">Copy</button>
+                </div>
+                <p id="locu">http://127.0.0.1:8000/locations/str:pk/update/<br></p>
+                <div>
+                    <button class="button" onclick="copy('locu')">Copy</button>
+                </div>
+            </div>
+
           </div>
     </div>
 
