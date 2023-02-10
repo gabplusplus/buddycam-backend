@@ -1,23 +1,6 @@
-# from django.views.decorators import gzip
-# from django.http import StreamingHttpResponse
+
 import cv2
 import threading
-# from django.shortcuts import render
-# from rest_framework import response
-# from rest_framework import status
-
-
-# @gzip.gzip_page
-# def Cam(request):
-#     try:
-#         cam = VideoCamera()
-#         return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
-#     except:
-#         pass
-
-#     return render(request)
-
-
 class VideoCamera(object):
     
     def __init__(self, url):
