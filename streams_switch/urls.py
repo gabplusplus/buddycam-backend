@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import StreamsDetails, StreamsList, StreamsDestroy
+from .views import StreamsDetails, StreamsList, StreamsDestroy, StreamsDestroyAll
 
 app_name = 'stream_switch'
 
