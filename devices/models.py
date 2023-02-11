@@ -9,6 +9,7 @@ class Devices(models.Model):
     device_full_name = models.ForeignKey(Members, on_delete=models.CASCADE, to_field='full_name', related_name='deviceFullName')
     long = models.CharField(default=long_value, max_length=150)
     lat = models.CharField(default=lat_value, max_length=150)
+    status = models.CharField(default="Disconnected", max_length=25)
 
     def __str__(self):
         return self.id
