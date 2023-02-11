@@ -6,7 +6,7 @@ from django.utils import timezone
 class Members(models.Model):
     full_name = models.CharField(max_length=256, unique=True)
     register_date = models.DateTimeField(default=timezone.now)
-    is_connected = models.BooleanField(default=False)
+    is_connected = models.CharField(default="Disconnected", max_length=20)
     
     def __str__(self):
         return self.full_name
