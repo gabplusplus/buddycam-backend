@@ -11,6 +11,7 @@ class DevicesSerializer(serializers.ModelSerializer):
             'device_full_name',
             'lat',
             'long',
+            'status',
         ]
     
     def create(self, validated_data):

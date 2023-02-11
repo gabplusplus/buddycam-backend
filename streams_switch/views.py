@@ -20,6 +20,10 @@ class StreamsList(generics.ListCreateAPIView):
         if current_entries >=6:
             raise ValidationError("Limit reached. Disconnect other device")
         else:
+            device_id = self.request.data.get('device_id')
+            device = Devices.objects.get(id=device_id)
+            device.status = "Connected"
+            device.save()
             serializer.save()
 
 class StreamsDetails(generics.RetrieveAPIView):
@@ -36,4 +40,7 @@ class StreamsDestroy(generics.DestroyAPIView):
 
     def perform_destroy(self, instance):
         destroy(str(instance.device_id))
+        device = Devices.objects.get(id=instance.device_id)
+        device.status = "Disconnected"
+        device.save()
         super().perform_destroy(instance)
