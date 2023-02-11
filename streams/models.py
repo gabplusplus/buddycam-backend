@@ -1,13 +1,9 @@
 from django.db import models
 from devices.models import Devices
 from streams_switch.url_manager import set_url
-from .locations import long_value, lat_value
 
 class Streams(models.Model):
     device_id = models.OneToOneField(Devices, on_delete=models.CASCADE, to_field='id', related_name="device_id", primary_key=True)
-    status = models.BooleanField(default=True, editable=False)
-    long = models.CharField(default=long_value, max_length=150)
-    lat = models.CharField(default=lat_value, max_length=150)
 
     @property
     def get_url(self):
@@ -20,3 +16,14 @@ class Streams(models.Model):
     def get_device_name(self):
         name = Devices.objects.filter(id=self.device_id).values_list('device_full_name')
         return name[0][0]
+    
+    def get_lat(self):
+        name = Devices.objects.filter(id=self.device_id).values_list('lat')
+        return name[0][0]
+    
+    def get_long(self):
+        name = Devices.objects.filter(id=self.device_id).values_list('long')
+        return name[0][0]
+
+    def status(self):
+        return "Connected"
