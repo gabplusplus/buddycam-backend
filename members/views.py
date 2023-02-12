@@ -39,7 +39,8 @@ class MembersDestroy(generics.DestroyAPIView):
     lookup_field = 'pk'
 
     def perform_destroy(self, instance):
-        dev_id = Devices.objects.filter(device_full_name=instance.full_name).values_list('id')
-        dev_id = dev_id[0][0]
-        destroy(str(dev_id))
+        if(Devices.objects.filter(device_full_name=instance.full_name).exists()):
+            dev_id = Devices.objects.filter(device_full_name=instance.full_name).values_list('id')
+            dev_id = dev_id[0][0]
+            destroy(str(dev_id))
         super().perform_destroy(instance)
