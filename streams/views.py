@@ -9,6 +9,7 @@ import cv2
 from streams_switch.url_manager import cam_list
 import json
 from devices.models import Devices
+import datetime
 
 
 @gzip.gzip_page
@@ -18,7 +19,8 @@ def Cam1(request):
     if check.isOpened():
         try:
             cam = VideoCamera(f'{cam_list.get("cam1")[1]}')
-            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame', status=status.HTTP_200_OK)
+            # name = f'{cam_list.get("cam1")[1]}'
+            return StreamingHttpResponse(gen(cam, f'{cam_list.get("cam1")[2]}'), content_type='multipart/x-mixed-replace;boundary=frame', status=status.HTTP_200_OK)
         except:
             pass
     else:
@@ -48,7 +50,7 @@ def Cam2(request):
     if check.isOpened():
         try:
             cam = VideoCamera(f'{cam_list.get("cam2")[1]}')
-            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
+            return StreamingHttpResponse(gen(cam, f'{cam_list.get("cam2")[2]}'), content_type='multipart/x-mixed-replace;boundary=frame')
         except:
             pass
     else:
@@ -75,8 +77,8 @@ def Cam3(request):
     check = cv2.VideoCapture(f'{cam_list.get("cam3")[1]}')
     if check.isOpened():
         try:
-            cam = VideoCamera(f'{cam_list.get("cam3")[1]}')
-            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
+            cam = VideoCamera(f'{cam_list.get("cam3",)[1]}')
+            return StreamingHttpResponse(gen(cam, f'{cam_list.get("cam3")[2]}'), content_type='multipart/x-mixed-replace;boundary=frame')
         except:
             pass
     else:
@@ -104,7 +106,7 @@ def Cam4(request):
     if check.isOpened():
         try:
             cam = VideoCamera(f'{cam_list.get("cam4")[1]}')
-            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
+            return StreamingHttpResponse(gen(cam, f'{cam_list.get("cam4")[2]}'), content_type='multipart/x-mixed-replace;boundary=frame')
         except:
             pass
     else:
@@ -132,7 +134,7 @@ def Cam5(request):
     if check.isOpened():
         try:
             cam = VideoCamera(f'{cam_list.get("cam5")[1]}')
-            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
+            return StreamingHttpResponse(gen(cam, f'{cam_list.get("cam5")[2]}'), content_type='multipart/x-mixed-replace;boundary=frame')
         except:
             pass
     else:
@@ -160,7 +162,7 @@ def Cam6(request):
     if check.isOpened():
         try:
             cam = VideoCamera(f'{cam_list.get("cam6")[1]}')
-            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame')
+            return StreamingHttpResponse(gen(cam, f'{cam_list.get("cam6")[2]}'), content_type='multipart/x-mixed-replace;boundary=frame')
         except:
             pass
     else:
