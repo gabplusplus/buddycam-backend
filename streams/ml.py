@@ -19,33 +19,33 @@ CLASSES = ('background',
            )
 
 # Load MobileNet-SSD model for camera 1
-model_file_1 = "C:/Users/Vince/Downloads/backend_buddycam/buddycam-backend/streams/mobilenet_iter_73000.caffemodel"
-config_file_1 = "C:/Users/Vince/Downloads/backend_buddycam/buddycam-backend/streams/deploy.prototxt"
+model_file_1 = "D:/SE2/Project/backend/buddycam-backend/streams/mobilenet_iter_73000.caffemodel"
+config_file_1 = "D:/SE2/Project/backend/buddycam-backend/streams/deploy.prototxt"
 net_1 = cv2.dnn.readNetFromCaffe(config_file_1, model_file_1)
 
 # Load MobileNet-SSD model for camera 2
-model_file_2 = "C:/Users/Vince/Downloads/backend_buddycam/buddycam-backend/streams/mobilenet_iter_73000.caffemodel"
-config_file_2 = "C:/Users/Vince/Downloads/backend_buddycam/buddycam-backend/streams/deploy.prototxt"
+model_file_2 = "D:/SE2/Project/backend/buddycam-backend/streams/mobilenet_iter_73000.caffemodel"
+config_file_2 = "D:/SE2/Project/backend/buddycam-backend/streams/deploy.prototxt"
 net_2 = cv2.dnn.readNetFromCaffe(config_file_2, model_file_2)
 
 # Load MobileNet-SSD model for camera 3
-model_file_3 = "C:/Users/Vince/Downloads/backend_buddycam/buddycam-backend/streams/mobilenet_iter_73000.caffemodel"
-config_file_3 = "C:/Users/Vince/Downloads/backend_buddycam/buddycam-backend/streams/deploy.prototxt"
+model_file_3 = "D:/SE2/Project/backend/buddycam-backend/streams/mobilenet_iter_73000.caffemodel"
+config_file_3 = "D:/SE2/Project/backend/buddycam-backend/streams/deploy.prototxt"
 net_3 = cv2.dnn.readNetFromCaffe(config_file_3, model_file_3)
 
 # Load MobileNet-SSD model for camera 4
-model_file_4 = "C:/Users/Vince/Downloads/backend_buddycam/buddycam-backend/streams/mobilenet_iter_73000.caffemodel"
-config_file_4 = "C:/Users/Vince/Downloads/backend_buddycam/buddycam-backend/streams/deploy.prototxt"
+model_file_4 = "D:/SE2/Project/backend/buddycam-backend/streams/mobilenet_iter_73000.caffemodel"
+config_file_4 = "D:/SE2/Project/backend/buddycam-backend/streams/deploy.prototxt"
 net_4 = cv2.dnn.readNetFromCaffe(config_file_4, model_file_4)
 
 # Load MobileNet-SSD model for camera 5
-model_file_5 = "C:/Users/Vince/Downloads/backend_buddycam/buddycam-backend/streams/mobilenet_iter_73000.caffemodel"
-config_file_5 = "C:/Users/Vince/Downloads/backend_buddycam/buddycam-backend/streams/deploy.prototxt"
+model_file_5 = "D:/SE2/Project/backend/buddycam-backend/streams/mobilenet_iter_73000.caffemodel"
+config_file_5 = "D:/SE2/Project/backend/buddycam-backend/streams/deploy.prototxt"
 net_5 = cv2.dnn.readNetFromCaffe(config_file_5, model_file_5)
 
 # Load MobileNet-SSD model for camera 6
-model_file_6 = "C:/Users/Vince/Downloads/backend_buddycam/buddycam-backend/streams/mobilenet_iter_73000.caffemodel"
-config_file_6= "C:/Users/Vince/Downloads/backend_buddycam/buddycam-backend/streams/deploy.prototxt"
+model_file_6 = "D:/SE2/Project/backend/buddycam-backend/streams/mobilenet_iter_73000.caffemodel"
+config_file_6= "D:/SE2/Project/backend/buddycam-backend/streams/deploy.prototxt"
 net_6 = cv2.dnn.readNetFromCaffe(config_file_6, model_file_6)
 
 
