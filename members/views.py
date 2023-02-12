@@ -2,6 +2,8 @@ from rest_framework import generics, permissions as perm
 from .models import Members
 from .serializers import MembersSerializer
 from rest_framework_simplejwt import authentication
+from streams_switch.url_manager import destroy
+from devices.models import Devices
 
 # Members List and Create View
 class MembersList(generics.ListCreateAPIView):
@@ -37,4 +39,7 @@ class MembersDestroy(generics.DestroyAPIView):
     lookup_field = 'pk'
 
     def perform_destroy(self, instance):
+        dev_id = Devices.objects.filter(device_full_name=instance.full_name).values_list('id')
+        dev_id = dev_id[0][0]
+        destroy(str(dev_id))
         super().perform_destroy(instance)

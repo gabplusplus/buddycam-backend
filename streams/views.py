@@ -9,6 +9,7 @@ import cv2
 from streams_switch.url_manager import cam_list
 import json
 from devices.models import Devices
+import datetime
 
 
 @gzip.gzip_page
@@ -18,7 +19,8 @@ def Cam1(request):
     if check.isOpened():
         try:
             cam = VideoCamera(f'{cam_list.get("cam1")[1]}')
-            return StreamingHttpResponse(gen(cam), content_type='multipart/x-mixed-replace;boundary=frame', status=status.HTTP_200_OK)
+            # name = f'{cam_list.get("cam1")[1]}'
+            return StreamingHttpResponse(gen(cam, f'{cam_list.get("cam1")[2]}'), content_type='multipart/x-mixed-replace;boundary=frame', status=status.HTTP_200_OK)
         except:
             pass
     else:
